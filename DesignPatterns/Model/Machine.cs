@@ -38,7 +38,7 @@ namespace DesignPatterns.Model
         public Machine<T> FullClone()
         {
             var result = new Machine<T>() { Name = this.Name};
-            _details.ForEach(p => result.Add((T)p.Clone()));
+            _details.ForEach(p => result.Add((T)p.FullClone()));
             return result;
         }
     }
