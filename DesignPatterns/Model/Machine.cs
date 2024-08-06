@@ -11,9 +11,9 @@ namespace DesignPatterns.Model
     internal class Machine<T> : IEnumerable<T>, IPartCollection<T>, ICloneable, IMyCloneable<Machine<T>>
         where T : Part
     {
-        public readonly string Description = "Механизм, который состоит из множества деталей.";
+        private readonly string Description = "Механизм, который состоит из множества деталей.";
+        private readonly List<T> _details = new List<T>();
         public string Name { get; set; }
-        readonly List<T> _details = new List<T>();
         public Machine() { }
 
         public object Clone()
@@ -40,6 +40,16 @@ namespace DesignPatterns.Model
             var result = new Machine<T>() { Name = this.Name};
             _details.ForEach(p => result.Add((T)p.FullClone()));
             return result;
+        }
+        public string GetFullSpecification() 
+        {
+            var result = Name + "\r\n";
+            foreach (var detail in _details)
+            {
+                result += detail.ToString();
+                result += "\r\n";
+            }
+            return result.TrimEnd();
         }
     }
 }

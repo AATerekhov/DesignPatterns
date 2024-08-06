@@ -9,13 +9,12 @@ namespace DesignPatterns.Model
     internal class MachineBuilder<T,P>
         where T : IPartCollection<P>, new()
     {
-        public readonly string Description = "Сборщик различных механизмов.";
-        readonly T _machine;
+        private readonly string Description = "Сборщик различных механизмов.";
+        private readonly T _machine;
         public MachineBuilder()
         {
             _machine = new T();
         }
-
         public void Add(P part) 
         {
             _machine.Add(part);

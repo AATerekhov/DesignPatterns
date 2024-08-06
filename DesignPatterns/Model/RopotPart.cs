@@ -8,7 +8,7 @@ namespace DesignPatterns.Model
 {
     internal class RobotPart : Part, IMyCloneable<RobotPart>
     {
-        public new readonly string Description = "Специальная деталь, которую могут содержать роботы.";
+        private new readonly string Description = "Специальная деталь, которую могут содержать роботы.";
         public bool IsElectric { get; set; }
         public bool IsMobile { get; set; }
         public RobotPart(string name, double weight, bool isElectric, bool isMobile) : base(name, weight)

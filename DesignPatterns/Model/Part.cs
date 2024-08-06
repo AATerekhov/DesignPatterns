@@ -8,15 +8,14 @@ namespace DesignPatterns.Model
 {
     internal class Part:ICloneable, IMyCloneable<Part>
     {
-        public readonly string Description = "Деталь, которую можгут содержать любые механизмы.";
+        private readonly string Description = "Деталь, которую можгут содержать любые механизмы.";
+        public string Name { get; set; }
+        public double Weight { get; set; }
         public Part(string name, double weight)
         {
             Name = name;
             Weight = weight;
         }
-
-        public string Name { get; set; }
-        public double Weight { get; set; }
 
         public virtual object Clone()
         {
@@ -27,5 +26,9 @@ namespace DesignPatterns.Model
         {
             return new Part(Name, Weight);
         }
+        public override string ToString()
+        {
+            return $"{Name} - {Weight} кг.";
+        }        
     }
 }
