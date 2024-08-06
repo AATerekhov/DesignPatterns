@@ -48,17 +48,21 @@ void LogMachine(Machine<Part> machine)
 
 void TestingСloning() 
 {
+    var propeller = new RobotPart(name: "Propeller", weight: 5.5, isElectric: false, isMobile: true);
     var builder = new MachineBuilder<Robot, RobotPart>();
     builder.Add(new RobotPart(name: "Rotor", weight: 10, isElectric: true, isMobile: true));
     builder.Add(rotor.FullClone());
     builder.Add(rotor.FullClone());
-    builder.Add(new RobotPart(name: "Propeller", weight: 5.5, isElectric: false, isMobile: true));
+    builder.Add(propeller);
     var robotOne = builder.GetValue();
     robotOne.Name = "Walli";
     var robotOther = robotOne.FullClone(); // Создали нового робота.
     robotOther.Name = "Charlie";
     robotOther.Add(new RobotPart("Engine", weight: 25, isElectric: false, isMobile: true));
 
+    //Для проверки меняем свойство ссылки propeller.
+    propeller.Name = "PropellerSystem";
+    propeller.Weight = 22;
     //выводим результат.
 
     Console.WriteLine("-------------------------------");
